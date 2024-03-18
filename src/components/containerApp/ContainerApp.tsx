@@ -1,5 +1,7 @@
 import { PropsWithChildren } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
+
+import { stylesContainerApp as styles } from './ContainerApp.styles';
 
 export const ContainerApp = ({ children }: PropsWithChildren) => {
     return (
@@ -8,16 +10,3 @@ export const ContainerApp = ({ children }: PropsWithChildren) => {
         </SafeAreaView>
     );
 };
-
-const styles = StyleSheet.create({
-    mainContainer: {
-        flex: 1,
-        height: '100%',
-    },
-    innerContainer: {
-        height: '100%',
-        width: '100%',
-        paddingHorizontal: 14,
-        paddingBottom: 37,
-    },
-});

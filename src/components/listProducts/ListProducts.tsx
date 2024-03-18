@@ -1,8 +1,10 @@
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList } from 'react-native';
 
-import { ItemList } from 'components/listProducts/ItemList';
+import { ItemList } from 'components/listProducts/itemList/ItemList';
 import { CardProduct } from 'model/Product';
 import useMaterialStore from 'store/MaterialStore';
+
+import { stylesListProducts as styles } from './ListProducts.styles';
 
 interface Props {
     products: CardProduct[];
@@ -21,9 +23,3 @@ export const ListProducts = ({ products }: Props) => {
         />
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        overflow: 'visible',
-    },
-});

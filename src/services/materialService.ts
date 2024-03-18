@@ -1,5 +1,5 @@
 import { ProductMaterial } from "model/productMaterial";
-import { get } from "./app";
+import { get } from "./api";
 
 export const materialService = {
     async getAllProductMaterials(): Promise<ProductMaterial[]> {

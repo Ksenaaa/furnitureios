@@ -1,4 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+
+import { stylesNoFound as styles } from './NoFound.styles';
 
 export const NoFound = () => {
     return (
@@ -7,14 +9,3 @@ export const NoFound = () => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    wrapperTextNoFound: {
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    textNoFound: {
-        fontSize: 24,
-    },
-});

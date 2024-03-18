@@ -1,5 +1,5 @@
 import { CardProduct, Product } from "model/Product";
-import { get } from "./app";
+import { get } from "./api";
 
 export const productService = {
     async getAllProductCards(): Promise<CardProduct[]> {

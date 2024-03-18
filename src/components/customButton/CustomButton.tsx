@@ -1,7 +1,9 @@
 import React from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { Button, View } from 'react-native';
 
 import { Colors } from 'utils/constants/Colors';
+
+import { stylesCustomButton as styles } from './CustomButton.styles';
 
 interface Props {
     title: string;
@@ -9,24 +11,8 @@ interface Props {
     disabled?: boolean;
 }
 
-export const CustomButton = ({ title, onPress, disabled }: Props) => (
+export const CustomButton = (props: Props) => (
     <View style={styles.container}>
-        <Button
-            title={title}
-            onPress={onPress}
-            disabled={disabled}
-            color={Colors.transparentGold}
-        />
+        <Button {...props} color={Colors.transparentGold} />
     </View>
 );
-
-const styles = StyleSheet.create({
-    container: {
-        justifyContent: 'center',
-        paddingHorizontal: 15,
-        borderColor: Colors.black,
-        borderWidth: 2,
-        borderRadius: 18,
-        backgroundColor: Colors.poseidon,
-    },
-});

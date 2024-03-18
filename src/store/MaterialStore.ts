@@ -9,21 +9,18 @@ interface MaterialStore {
     setMaterials: (data: ProductMaterial[]) => void
 }
 
-const useMaterialStore = create<MaterialStore>()(
-    persist(
-        (set) => ({
-            materials: [],
-            setMaterials: (data) => {
-                set({
-                    materials: data
-                });
-            }
-        }),
-        {
-            name: 'materials-storage',
-            storage: createJSONStorage(() => AsyncStorage),
-        }
-    )
-);
+const useMaterialStore = create<MaterialStore>()(persist((set) => ({
+    materials: [],
+    setMaterials: (data) => {
+        set({
+            materials: data
+        });
+    }
+}),
+    {
+        name: 'materials-storage',
+        storage: createJSONStorage(() => AsyncStorage),
+    }
+));
 
 export default useMaterialStore;

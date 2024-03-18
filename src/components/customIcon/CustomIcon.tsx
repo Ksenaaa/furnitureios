@@ -8,6 +8,6 @@ interface Props {
     disabled?: boolean;
 }
 
-export const CustomIcon = ({ name, size, color, disabled }: Props) => {
-    return <Feather name={name} size={size} color={color} disabled={disabled} />;
+export const CustomIcon = (props: Props) => {
+    return <Feather {...props} />;
 };

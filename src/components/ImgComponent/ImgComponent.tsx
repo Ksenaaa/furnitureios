@@ -1,4 +1,6 @@
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, View } from 'react-native';
+
+import { stylesImgComponent as styles } from './ImgComponent.styles';
 
 interface Props {
     img: string;
@@ -20,18 +22,3 @@ export const ImgComponent = ({ img, heigh, width }: Props) => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        height: '100%',
-        width: '100%',
-        position: 'relative',
-        overflow: 'hidden',
-    },
-    imgElement: {
-        position: 'absolute',
-        objectFit: 'fill',
-        height: '100%',
-        width: '100%',
-    },
-});

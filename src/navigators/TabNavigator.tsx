@@ -1,5 +1,3 @@
-import { StyleSheet } from 'react-native';
-
 import { BlurView } from '@react-native-community/blur';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -9,9 +7,13 @@ import { HomeScreen } from 'screens/HomeScreen';
 import { ProfileScreen } from 'screens/ProfileScreen';
 import { Colors } from 'utils/constants/Colors';
 
+import { stylesTabNavigator as styles } from './TabNavigator.styles';
+
 const Tab = createBottomTabNavigator();
 
 export const TabNavigator = () => {
+    const iconColor = (isFocus: boolean) => (isFocus ? Colors.gold : Colors.grey);
+
     return (
         <Tab.Navigator
             initialRouteName="Home"
@@ -29,12 +31,8 @@ export const TabNavigator = () => {
                 name="Home"
                 component={HomeScreen}
                 options={{
-                    tabBarIcon: ({ focused, color, size }) => (
-                        <CustomIcon
-                            name="home"
-                            size={25}
-                            color={focused ? Colors.gold : Colors.grey}
-                        />
+                    tabBarIcon: ({ focused }) => (
+                        <CustomIcon name="home" size={25} color={iconColor(focused)} />
                     ),
                 }}
             />
@@ -42,12 +40,8 @@ export const TabNavigator = () => {
                 name="Basket"
                 component={BasketScreen}
                 options={{
-                    tabBarIcon: ({ focused, color, size }) => (
-                        <CustomIcon
-                            name="shopping-cart"
-                            size={25}
-                            color={focused ? Colors.gold : Colors.grey}
-                        />
+                    tabBarIcon: ({ focused }) => (
+                        <CustomIcon name="shopping-cart" size={25} color={iconColor(focused)} />
                     ),
                     tabBarBadge: 3,
                 }}
@@ -56,33 +50,11 @@ export const TabNavigator = () => {
                 name="Profile"
                 component={ProfileScreen}
                 options={{
-                    tabBarIcon: ({ focused, color, size }) => (
-                        <CustomIcon
-                            name="user"
-                            size={25}
-                            color={focused ? Colors.gold : Colors.grey}
-                        />
+                    tabBarIcon: ({ focused }) => (
+                        <CustomIcon name="user" size={25} color={iconColor(focused)} />
                     ),
                 }}
             />
         </Tab.Navigator>
     );
 };
-
-const styles = StyleSheet.create({
-    containerTabBar: {
-        height: 70,
-        position: 'absolute',
-        paddingTop: 10,
-        backgroundColor: Colors.grey,
-        borderTopWidth: 0,
-        borderTopColor: 'transparent',
-    },
-    blurStyles: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-    },
-});
