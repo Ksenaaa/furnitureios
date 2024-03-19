@@ -6,6 +6,7 @@ import { BasketScreen } from 'screens/BasketScreen';
 import { HomeScreen } from 'screens/HomeScreen';
 import { ProfileScreen } from 'screens/ProfileScreen';
 import { Colors } from 'utils/constants/Colors';
+import { ScreenNames } from 'utils/constants/ScreenNames';
 
 import { stylesTabNavigator as styles } from './TabNavigator.styles';
 
@@ -16,7 +17,7 @@ export const TabNavigator = () => {
 
     return (
         <Tab.Navigator
-            initialRouteName="Home"
+            initialRouteName={ScreenNames.HOME}
             screenOptions={{
                 tabBarHideOnKeyboard: true,
                 headerShown: false,
@@ -28,7 +29,7 @@ export const TabNavigator = () => {
             }}
         >
             <Tab.Screen
-                name="Home"
+                name={ScreenNames.HOME}
                 component={HomeScreen}
                 options={{
                     tabBarIcon: ({ focused }) => (
@@ -37,7 +38,7 @@ export const TabNavigator = () => {
                 }}
             />
             <Tab.Screen
-                name="Basket"
+                name={ScreenNames.BASKET}
                 component={BasketScreen}
                 options={{
                     tabBarIcon: ({ focused }) => (
@@ -47,7 +48,7 @@ export const TabNavigator = () => {
                 }}
             />
             <Tab.Screen
-                name="Profile"
+                name={ScreenNames.PROFILE}
                 component={ProfileScreen}
                 options={{
                     tabBarIcon: ({ focused }) => (

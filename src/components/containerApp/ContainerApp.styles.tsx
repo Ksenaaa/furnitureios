@@ -8,7 +8,7 @@ export const stylesContainerApp = StyleSheet.create({
     innerContainer: {
         height: '100%',
         width: '100%',
-        paddingHorizontal: 14,
+        paddingHorizontal: 6,
         paddingBottom: 37,
     },
 });

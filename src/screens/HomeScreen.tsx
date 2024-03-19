@@ -18,9 +18,9 @@ export const HomeScreen = () => {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const dataProducts = await productService.getAllProductCards();
+            const dataProducts = await productService.getAllProductCards('livingRooms');
             const dataMaterials = await materialService.getAllProductMaterials();
-            setProducts(dataProducts);
+            setProducts(dataProducts.pageData);
             setMaterials(dataMaterials);
             setLoading(false);
         };

@@ -1,8 +1,13 @@
 import { Text, TouchableOpacity, View } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 import { ImgComponent } from 'components/ImgComponent/ImgComponent';
 import { CardProduct } from 'model/Product';
 import { ProductMaterial } from 'model/productMaterial';
+import { RootStackNavigatorParamsList } from 'model/rootStackNavigatorParamsList';
+import { ScreenNames } from 'utils/constants/ScreenNames';
 import { productColors } from 'utils/helpers/productColors';
 
 import { stylesItemList as styles } from './ItemList.styles';
@@ -13,8 +18,10 @@ interface Props {
 }
 
 export const ItemList = ({ item, materials }: Props) => {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackNavigatorParamsList>>();
+
     const onClick = () => {
-        //TODO: a link to the product page will be added
+        navigation.navigate(ScreenNames.DETAILS, { productId: item.id });
     };
 
     const colors = productColors(item.colors, materials);
