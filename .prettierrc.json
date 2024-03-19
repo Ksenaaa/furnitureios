@@ -10,7 +10,15 @@
     "useTabs": false,
     "tabWidth": 4,
     "trailingComma": "es5",
-    "importOrder": ["^react", "^react-native", "<THIRD_PARTY_MODULES>", "^[a-zA-Z]", "^[./]"],
+    "importOrder": [
+        "^react",
+        "^react-native",
+        "^@",
+        "<THIRD_PARTY_MODULES>",
+        "^[a-zA-Z]",
+        "^((?!.*.styles$).)*$",
+        "^[./]"
+    ],
     "importOrderSeparation": true,
     "importOrderSortSpecifiers": true
 }

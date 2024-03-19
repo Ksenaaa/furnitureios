@@ -8,11 +8,12 @@ import { Product } from 'model/Product';
 import { RootStackNavigatorParamsList } from 'model/rootStackNavigatorParamsList';
 import useMaterialStore from 'store/MaterialStore';
 import { productColors } from 'utils/helpers/productColors';
-import { useToggle } from 'utils/hooks/toggleHook';
+import { useToggle } from 'utils/hooks/useToggle';
 
-import { stylesProductDetails as styles } from './ProductDetails.styles';
 import { CategoryDetails } from './categoryDetails/CategoryDetails';
 import { ProductImgs } from './productImgs/ProductImgs';
+
+import { stylesProductDetails as styles } from './ProductDetails.styles';
 
 interface Props {
     product: Product;

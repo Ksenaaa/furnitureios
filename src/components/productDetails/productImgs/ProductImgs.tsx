@@ -5,6 +5,7 @@ import { ImgComponent } from 'components/ImgComponent/ImgComponent';
 import { Colors } from 'utils/constants/Colors';
 
 import { ButtonSwipe } from './ButtonSwipe';
+
 import { stylesProductImgs as styles } from './ProductImgs.styles';
 
 interface Props {
