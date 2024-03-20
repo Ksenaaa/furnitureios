@@ -9,4 +9,6 @@ export interface ColorsInterface {
     pastelteal: string,
     transparentGold: string,
     transparentBronze: string,
+    transparentGrey: string,
+    transparentGreyish: string,
 }

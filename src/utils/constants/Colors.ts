@@ -11,4 +11,6 @@ export const Colors: ColorsInterface = {
     pastelteal: '#63B7B7',
     transparentGold: '#E3E2B3D6',
     transparentBronze: '#E39152D6',
+    transparentGrey: '#00000080',
+    transparentGreyish: '#00000016',
 }
