@@ -22,7 +22,7 @@ export const ModalApp = ({
     children,
 }: PropsWithChildren<Props>) => {
     return (
-        <Modal animationType="slide" transparent={true} visible={isVisibleModal}>
+        <Modal animationType="slide" transparent visible={isVisibleModal}>
             <View style={styles.substrateView}>
                 <View style={styles.modalView}>
                     <ScrollView>{children}</ScrollView>

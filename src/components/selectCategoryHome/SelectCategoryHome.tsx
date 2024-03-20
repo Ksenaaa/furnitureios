@@ -25,12 +25,7 @@ export const SelectCategoryHome = () => {
     };
 
     useEffect(() => {
-        const fetchData = async () => {
-            const dataCatalogPictures = await mainCatalogService.getMainCategoryImgs();
-            setCatalogPictures(dataCatalogPictures);
-        };
-
-        fetchData();
+        mainCatalogService.getMainCategoryImgs().then((res) => setCatalogPictures(res));
     }, []);
 
     return (

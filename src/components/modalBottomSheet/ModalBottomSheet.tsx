@@ -1,4 +1,4 @@
-import { PropsWithChildren, useCallback, useMemo, useRef } from 'react';
+import { PropsWithChildren, useCallback, useRef } from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
 
 import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
@@ -23,8 +23,6 @@ export const ModalBottomSheet = ({
     const bottomSheetRef = useRef<BottomSheetModal>(null);
     const { isOpen: isVisibleDimmer, onOpen: onShowDimmer, onClose: onHideDimmer } = useToggle();
 
-    const snap = useMemo(() => snapPoints, []);
-
     const handleOpenModal = useCallback(() => {
         onShowDimmer();
         bottomSheetRef.current?.present();
@@ -45,7 +43,7 @@ export const ModalBottomSheet = ({
                 <BottomSheetModal
                     ref={bottomSheetRef}
                     index={1}
-                    snapPoints={snap}
+                    snapPoints={snapPoints}
                     handleStyle={styles.handlebar}
                     onDismiss={handleCloseModal}
                 >
