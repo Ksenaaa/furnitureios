@@ -1,5 +1,6 @@
 import { CardProduct, Product } from "model/Product";
 import { DataPage } from "model/dataPage";
+
 import { get } from "./api";
 
 export const productService = {
