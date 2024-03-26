@@ -11,46 +11,58 @@ const getFullPath = (path: string): string => {
 };
 
 
-export async function get(path: string) {
+export async function get(path: string, signal: AbortSignal) {
     setContentType();
 
-    return await http(new Request(getFullPath(path), { method: 'get', headers: headers }));
+    return await http(new Request(getFullPath(path), { method: 'get', headers, signal }));
 }
 
-export async function del(path: string) {
+export async function del(path: string, signal: AbortSignal) {
     setContentType();
 
-    return await http(new Request(getFullPath(path), { method: 'delete', headers: headers }));
+    return await http(new Request(getFullPath(path), { method: 'delete', headers, signal }));
 }
 
 // eslint-disable-next-line
-export async function post(path: string, body: any) {
+export async function post(path: string, body: any, signal: AbortSignal) {
     setContentType();
 
     return await http(new Request(getFullPath(path), {
         method: 'post',
-        headers: headers,
-        body: JSON.stringify(body)
+        headers,
+        body: JSON.stringify(body),
+        signal
     }));
 }
 
 // eslint-disable-next-line
-export async function put(path: string, body: any) {
+export async function put(path: string, body: any, signal: AbortSignal) {
     setContentType();
 
     return await http(new Request(getFullPath(path), {
         method: 'put',
-        headers: headers,
-        body: JSON.stringify(body)
+        headers,
+        body: JSON.stringify(body),
+        signal
     }));
 }
 
 async function http(request: RequestInfo) {
-    const response = await fetch(request);
+    try {
+        const response = await fetch(request);
 
-    if (!response.ok) {
-        throw new Error(`Request failed: ${response.status} ${response.statusText}`);
+        if (!response.ok) {
+            throw new Error(`Request failed: ${response.status} ${response.statusText}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        const { name, message } = error as Error;
+
+        if (name === 'AbortError') {
+            console.log('request abort:', message);
+        } else {
+            throw error;
+        }
     }
-
-    return await response.json();
 }

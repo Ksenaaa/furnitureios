@@ -4,18 +4,18 @@ import { DataPage } from "model/dataPage";
 import { get } from "./api";
 
 export const productService = {
-    async getAllProductCards(category: string): Promise<DataPage<CardProduct[]>> {
-        const result = await get(`product/list/${category}`);
+    async getAllProductCards(signal: AbortSignal, category: string): Promise<DataPage<CardProduct[]>> {
+        const result = await get(`product/list/${category}`, signal);
 
         return result as DataPage<CardProduct[]>;
     },
-    async getNewProductCards(): Promise<CardProduct[]> {
-        const result = await get('product/new');
+    async getNewProductCards(signal: AbortSignal): Promise<CardProduct[]> {
+        const result = await get('product/new', signal);
 
         return result as CardProduct[];
     },
-    async getProductId(id: string): Promise<Product> {
-        const result = await get(`product/${id}`);
+    async getProductId(signal: AbortSignal, id: string): Promise<Product> {
+        const result = await get(`product/${id}`, signal);
 
         return result;
     },
