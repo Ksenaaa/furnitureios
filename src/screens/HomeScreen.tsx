@@ -1,47 +1,37 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { ContainerApp } from 'components/containerApp/ContainerApp';
 import { ListProducts } from 'components/listProducts/ListProducts';
-import { Loader } from 'components/loader/Loader';
 import { NoFound } from 'components/noFound/NoFound';
 import { SelectCategoryHome } from 'components/selectCategoryHome/SelectCategoryHome';
-import { CardProduct } from 'model/Product';
 import { materialService } from 'services/materialService';
 import { productService } from 'services/productService';
 import useCategoryStore from 'store/CategoryStore';
 import useMaterialStore from 'store/MaterialStore';
+import { useFetchQuery } from 'utils/hooks/useFetchQuery';
 
 export const HomeScreen = () => {
-    const [products, setProducts] = useState<CardProduct[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
-
     const setMaterials = useMaterialStore((state) => state.setMaterials);
     const category = useCategoryStore((state) => state.category);
 
+    const { data: products, isLoading } = useFetchQuery(
+        productService.getAllProductCards,
+        category
+    );
+
+    const { data: dataMaterials } = useFetchQuery(materialService.getAllProductMaterials);
+
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-
-            const dataProducts = await productService.getAllProductCards(category);
-            const dataMaterials = await materialService.getAllProductMaterials();
-            setProducts(dataProducts.pageData);
-            setMaterials(dataMaterials);
-
-            setLoading(false);
-        };
-
-        fetchData();
-    }, [category]);
+        dataMaterials && setMaterials(dataMaterials);
+    }, [dataMaterials]);
 
     return (
         <>
-            <ContainerApp>
-                {loading ? (
-                    <Loader />
-                ) : products.length > 0 ? (
-                    <ListProducts products={products} />
+            <ContainerApp isLoading={isLoading}>
+                {products && products.pageData.length > 0 ? (
+                    <ListProducts products={products?.pageData} />
                 ) : (
-                    <NoFound />
+                    !isLoading && <NoFound />
                 )}
             </ContainerApp>
             <SelectCategoryHome />

@@ -1,20 +1,16 @@
-import { useEffect, useState } from 'react';
-
 import { useBottomSheetModal } from '@gorhom/bottom-sheet';
 
 import { ModalBottomSheet } from 'components/modalBottomSheet/ModalBottomSheet';
-import { MainCategoryImg } from 'model/mainCategoryImg';
 import { mainCatalogService } from 'services/mainCatalogService';
 import useCategoryStore from 'store/CategoryStore';
 import { menuCategories } from 'utils/constants/MenuCategories';
+import { useFetchQuery } from 'utils/hooks/useFetchQuery';
 
 import { CategoryCard } from './categoryCard/CategoryCard';
 
 import { stylesSelectCategoryHome as styles } from './SelectCategoryHome.styles';
 
 export const SelectCategoryHome = () => {
-    const [catalogPictures, setCatalogPictures] = useState<MainCategoryImg[]>([]);
-
     const setCategory = useCategoryStore((state) => state.setCategory);
 
     const { dismiss } = useBottomSheetModal();
@@ -24,9 +20,9 @@ export const SelectCategoryHome = () => {
         dismiss();
     };
 
-    useEffect(() => {
-        mainCatalogService.getMainCategoryImgs().then((res) => setCatalogPictures(res));
-    }, []);
+    const { data: catalogPictures, isLoading } = useFetchQuery(
+        mainCatalogService.getMainCategoryImgs
+    );
 
     return (
         <ModalBottomSheet buttonTitle="Select category" buttonStyles={styles.buttonOpenModal}>
@@ -35,6 +31,7 @@ export const SelectCategoryHome = () => {
                     key={item.id}
                     item={item}
                     catalogImg={catalogPictures}
+                    isLoadingImg={isLoading}
                     onChange={handleSelectedCategory}
                 />
             ))}
